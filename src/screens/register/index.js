@@ -10,15 +10,19 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
+import * as cons from '../../res/values/constants'
+
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
+        cons.serverStart();
         this.state = {
             correo: '',
             contra: '',
             confir: '',
             cedu: '',
+            name: '',
             barrio: '',
             checker: true
 
@@ -49,8 +53,8 @@ class Register extends React.Component {
                                 id="name"
                                 label="Nombre"
                                 style={{margin: 5}}
-                                value={this.state.correo}
-                                onChange={this.handleChange('correo')}
+                                value={this.state.name}
+                                onChange={this.handleChange('name')}
                                 margin="normal"
                             />
                             <br/>
@@ -111,7 +115,7 @@ class Register extends React.Component {
                         </form>
                     </CardContent>
                     <CardActions>
-                        <Button variant="contained" disabled={this.state.checker}>
+                        <Button variant="contained" disabled={this.state.checker} onClick={() => (cons.register(false, this.state.cedu, this.state.name, this.state.correo, this.state.contra, this.state.barrio))}>
                             <Typography>
                                 Register
                             </Typography>

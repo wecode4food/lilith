@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
-import 'typeface-roboto';
+// import 'typeface-roboto';
 class Home extends React.Component {
 
     render() {

@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField/TextField';
 import Typography from "@material-ui/core/es/Typography/Typography";
 
+import * as cons from '../../res/values/constants'
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -41,7 +43,7 @@ class Login extends React.Component {
                         onChange={this.handleChange('contra')}
                         margin="normal"
                     />
-                    <Button>
+                    <Button onClick={() => (cons.login(this.state.correo, this.state.contra))}>
                         <Typography>
                             Login
                         </Typography>

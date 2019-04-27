@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
-import 'typeface-roboto';
+// import 'typeface-roboto';
 class Post extends React.Component {
       /*function get_post_desc() {
         return (
@@ -39,7 +39,7 @@ class Post extends React.Component {
              helperText="hello"
              variant="outlined"
              />
-            //<Typography>{this.state.multiline}</Typography>
+            {/*<Typography>{this.state.multiline}</Typography>*/}
           </div>
 
         );
