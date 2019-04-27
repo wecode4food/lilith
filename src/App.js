@@ -24,9 +24,10 @@ class App extends React.Component {
                   <Route exact path="/" render={props => <Home {...props}/>}/>
                   <Route path="/login" render={props => <Login {...props}/>}/>
                   <Route path="/register" render={props => <Register {...props}/>}/>
-                  <Route path="/post" render={props => <Post {...props}/>}/>
+                  {/*<Route path="/post" render={props => <Post {...props}/>}/>*/}
                   <Route path="/testpage" render={props => <TestPage {...props}/>}/>
 
+                  <Route path="/post/:id" component={Post}/>
               </Switch>
           </Layout>
       </BrowserRouter>

@@ -12,8 +12,9 @@ export function ServerTest() {
 export function serverStart() {
     webSocket.on('connection', function (s) {
         s.on('result', (resultado) => {
-            this.lastResult = resultado;
+            lastResult = resultado;
         });
+        return lastResult;
     });
 }
 
@@ -23,7 +24,9 @@ export function getFromDb(in_child) {
         {
             child: in_child
         });
-    return this.lastResult;
+    webSocket.on('result', (s) => (
+        this.lastResult = s.arraytemp
+    ));
 }
 
 //escribir en la BD
@@ -43,7 +46,7 @@ export function login(email, pass) {
         });
 }
 
-export function register(admin_bool, cc_num, name, email, pass, neigh){
+export function register(admin_bool, cc_num, name, email, pass, neigh) {
     webSocket.emit('register',
         {
             admin: admin_bool,
@@ -54,6 +57,10 @@ export function register(admin_bool, cc_num, name, email, pass, neigh){
             barrio: neigh
         });
 
+}
+
+export function getAllChildren(child, hash) {
+    webSocket.emit('read-item', {child: child, ihash: hash});
 }
 
 export const webSocket = openSocket('http://localhost:4500'); //Constante del webSocket

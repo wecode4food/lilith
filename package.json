@@ -10,7 +10,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "typeface-roboto": "0.0.54",
-    "socket.io-client": "latest"
+    "socket.io-client": "latest",
+    "firebase": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
