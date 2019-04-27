@@ -8,16 +8,18 @@ import Grow from "@material-ui/core/es/Grow/Grow";
 import Typography from "@material-ui/core/es/Typography/Typography";
 import MenuList from "@material-ui/core/es/MenuList/MenuList";
 import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
-
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import 'typeface-roboto';
 
 class Layout extends React.Component {
 
     render() {
+
         const {children} = this.props;
         return (
             <Fragment>
                 <div className="App">
-                    <nav position="static">
+                    <nav position="static" class = "gradient">
 
                         <Toolbar>
                             <Grid justify="space-between"
@@ -25,8 +27,8 @@ class Layout extends React.Component {
                                   spacing={24}>
                                 <Grid item>
                                     <MenuList>
-                                        <MenuItem>
-                                            <Typography component={Link} to="/">
+                                        <MenuItem  component={Link} to="/">
+                                            <Typography>
                                                 Titulo
                                             </Typography>
                                         </MenuItem>
@@ -46,6 +48,13 @@ class Layout extends React.Component {
                         <div/>
                         {children}
                     </main>
+                    <footer>
+
+                        <div class="s">
+                          <p>Wecode4food 2019</p>
+                        </div>
+
+                    </footer>
                 </div>
             </Fragment>
         );
