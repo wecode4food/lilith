@@ -7,11 +7,44 @@ import * as cons from './res/values/constants'; // Archivo .js con las constante
 
 class App extends React.Component{
 
+  lastResult = {};
+
   ServerTest(){
-    cons.webSocket.emit('test');
+    cons.webSocket.emit('read',
+    {
+      child: 'usuarios',
+    });
+  }
+
+  serverStart(){
+    cons.webSocket.on('connection',function(s){
+      s.on('result',(resultado) => {
+        this.lastResult = resultado;
+      });
+    });
+  }
+
+  //leer de la BD
+  getFromDb(in_child){
+    cons.webSocket.emit('read',
+    {
+      child: in_child
+    });
+    return this.lastResult;
+  }
+
+  //escribir en la BD
+  upToDb(up_child, up_data)
+  {
+    cons.webSocket.emit('write',
+    {
+      child: up_child,
+      data: up_data
+    });
   }
 
   render(){
+    this.serverStart(); // inicia las escuchas
   return (
     <div className="App">
       <header className="App-header">
