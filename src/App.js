@@ -3,32 +3,29 @@ import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import * as cons from './res/values/constants'; // Archivo .js con las constantes
 
-class App extends React.Component{
+import Login from './screens/login'
+import Register from './screens/register'
 
-  ServerTest(){
-    cons.webSocket.emit("new");
-  }
+class App extends React.Component {
 
-  render(){
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload
-        </p>
+    ServerTest() {
+        cons.webSocket.emit("new");
+    }
 
-        <Button variant="contained" onClick={() => (this.ServerTest())}>
-          <Typography>
-            Test
-          </Typography>
-        </Button>
-      </header>
-    </div>
-  );
-}
+    render() {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" render={() => <div>Home</div>}/>
+                    <Route path="/register" render={props => <Register {...props}/>}/>
+                    <Route path="/login" render={props => <Login {...props}/>}/>
+                </Switch>
+            </BrowserRouter>
+        );
+    }
 }
 
 
