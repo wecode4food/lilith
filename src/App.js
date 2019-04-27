@@ -20,7 +20,7 @@ class App extends React.Component{
           Edit <code>src/App.js</code> and save to reload
         </p>
 
-        <Button variant="contained" onPress={() => (this.ServerTest())}>
+        <Button variant="contained" onClick={() => (this.ServerTest())}>
           <Typography>
             Test
           </Typography>
