@@ -1,32 +1,32 @@
 import React from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import * as cons from './res/values/constants'; // Archivo .js con las constantes
-
+import Layout from './Layout';
 import Login from './screens/login'
 import Register from './screens/register'
+import Home from './screens/home'
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 class App extends React.Component {
 
-    ServerTest() {
-        cons.webSocket.emit("new");
-    }
+  render(){
 
-    render() {
-        return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" render={() => <div>Home</div>}/>
-                    <Route path="/register" render={props => <Register {...props}/>}/>
-                    <Route path="/login" render={props => <Login {...props}/>}/>
-                </Switch>
-            </BrowserRouter>
-        );
-    }
+  return (
+      <BrowserRouter>
+          <Layout>
+              <Switch>
+                  <Route exact path="/" render={props => <Home {...props}/>}/>
+                  <Route path="/login" render={props => <Login {...props}/>}/>
+                  <Route path="/register" render={props => <Register {...props}/>}/>
+              </Switch>
+          </Layout>
+      </BrowserRouter>
+  );
 }
-
+}
 
 export default App;
