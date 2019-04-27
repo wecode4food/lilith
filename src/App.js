@@ -8,7 +8,7 @@ import * as cons from './res/values/constants'; // Archivo .js con las constante
 class App extends React.Component{
 
   ServerTest(){
-    cons.webSocket.emit("new");
+    cons.webSocket.emit('test');
   }
 
   render(){
