@@ -25,11 +25,11 @@ class Post extends React.Component {
     componentDidMount() {
         const { match: { params } } = this.props;
         firebase.database().ref('/post/').on("value", snapshot => {
-            results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
+        /*    results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
             console.log(snapshot.val());
             console.log(results)//esto es para mostrar
             let xd = Object.getOwnPropertyNames(results);
-            this.setState({dataKeys: xd, getFckanSht: results});
+            this.setState({dataKeys: xd, getFckanSht: results});*/
         });
     }
 
