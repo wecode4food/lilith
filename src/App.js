@@ -1,26 +1,36 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
-function App() {
+class App extends React.Component {
+
+  render(){
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav position= "static">
+
+          <Toolbar>
+            <Button  color="inherit">Login</Button>
+            <Button  color="inherit">Register</Button>
+          </Toolbar>
+
+      </nav>
+      <main>
+        <h1>Contenido</h1>
+
+
+      </main>
+      <footer>
+        <h1>Footer</h1>
+      </footer>
     </div>
   );
+}
 }
 
 export default App;

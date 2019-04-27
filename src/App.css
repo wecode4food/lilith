@@ -1,5 +1,45 @@
+:root{
+  --primary:#9C27B0;
+  --primary_dark:#7B1FA2;
+  --primary_light:#E1BEE7;
+  --accent:#00BCD4;
+  --primary_text:#212121;
+  --secondary_text:#757575;
+  --icons:#FFFFFF;
+  --divider:#BDBDBD;
+
+}
+
+nav{
+  grid-area: nv;
+  background: var(--primary);
+  align-self: center;
+
+}
+
+
+header{
+  grid-area: hd;
+}
+main{
+  grid-area: mn;
+  padding: 20px;
+}
+footer{
+  grid-area: ft;
+}
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: min-content;
+  grid-template-areas:
+      "nv nv nv nv nv nv nv nv nv"
+      "mn mn mn mn mn mn mn mn mn"
+      "ft ft ft ft ft ft ft ft ft";
+
+
 }
 
 .App-logo {
@@ -22,6 +62,7 @@
 .App-link {
   color: #61dafb;
 }
+
 
 @keyframes App-logo-spin {
   from {
