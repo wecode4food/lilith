@@ -9,8 +9,10 @@ import Home from './screens/home';
 import Post from './screens/post';
 import AdminLayout from './Admin_layout';
 import AdminRetos from './screens/admin_retos';
+import Graficos from './screens/graficos';
 import TestPage from './screens/testpage';
 import Vote from './screens/vote'
+import Reto from './screens/retos';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -35,6 +37,9 @@ class App extends React.Component{
                   <Route path="/testpage" render={props => <TestPage {...props}/>}/>
                   <Route path="/AdminLayout" render={props => <AdminLayout {...props}/>}/>
                   <Route path="/AdminRetos" render={props => <AdminRetos {...props}/>}/>
+                  <Route path="/Graficos" render={props => <Graficos {...props}/>}/>
+
+                  <Route path="/reto/:id" component={Reto}/>
                   <Route path="/post/:id" component={Post}/>
 
               </Switch>

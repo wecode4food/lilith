@@ -12,6 +12,7 @@ import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper';
 import HomeIcon from '@material-ui/icons/Home';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import 'typeface-roboto';
@@ -43,13 +44,15 @@ class AdminLayout extends React.Component {
         return (
             <Fragment>
             <div className="App">
-                <div class="sidenav">
-                <ul>
-                    <li><a href="#">Retos</a></li>
-                    <li><a href="#">Encuesta</a></li>
-                    <li><a href="#">Estadisticas</a></li>
-                    <li><a href="#">Gestion de contenido</a></li>
-                  </ul>
+                <div class="sidenav" position="static">
+                <Paper className={this.props.paper} id="cont_menuli">
+                  <MenuList>
+                    <MenuItem component={Link} to="/AdminRetos">Retos</MenuItem>
+                    <MenuItem>Encuesta</MenuItem>
+                    <MenuItem>Estadisticas</MenuItem>
+                    <MenuItem>Gestion de contenido</MenuItem>
+                  </MenuList>
+                </Paper>
                 </div>
                 <main>
                     <div/>

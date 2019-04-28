@@ -11,7 +11,7 @@ document.addEventListener("keydown",fun);
 			}
 			function readOutLoud(message) {
     			var speech = new SpeechSynthesisUtterance();
-
+				let voices;
 		    	// Set the text and voice attributes.
     			speech.text = message;
     			speech.volume = 1;
