@@ -51,10 +51,10 @@ class TestPage extends React.Component {
             uploadedFile: files[0]
         });
 
-        let res = cons.uploadFile(files[0]);
+        //let res = cons.uploadFile(files[0]);
         //cons.DBgetURL(files[0]);
         //cons.fileUpload(files[0]);
-        console.log(res);
+        //console.log(res);
     }
 
     

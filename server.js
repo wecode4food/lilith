@@ -5,6 +5,8 @@ const socket 	= require('socket.io')
 const firebase  = require('firebase')
 var app = express();
 var provider = new firebase.auth.GoogleAuthProvider();
+let results = {};
+let listS = [];
 
 var server = app.listen(4500,function(){
 	console.log('');
@@ -36,15 +38,24 @@ function writeData(data, child) {
 }
 
 function readData(in_child){
-	let arraytemp = [];
-	let results = {};
-	firebase.database().ref('/'+in_child+'/').on("value", snapshot => {
-		results= snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
-		//console.log(snapshot.val());//esto es para mostrar
-		arraytemp = Object.keys(results);
-		return arraytemp;
-		});
 	
+	firebase.database().ref('/'+in_child+'/').on("value", snapshot => {
+		results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
+		//console.log(snapshot.val());
+            //console.log(results)//esto es para mostrar
+            let xd = Object.getOwnPropertyNames(results);
+            //this.setState({dataKeys: xd, getFckanSht: results});
+            //console.log(this.state.dataKeys);
+            //console.log(this.state.getFckanSht);
+            let bad = results;
+            let x;
+            for (x in bad) {
+                //console.log(bad[x]);
+                listS.push(bad[x]);
+
+            }
+		return listS;
+	});
 }
 
 function addUserData(in_admin, in_cc, in_nombre, in_email, in_barrio){
@@ -55,7 +66,7 @@ function addUserData(in_admin, in_cc, in_nombre, in_email, in_barrio){
 			nombre: in_nombre,
 			email: in_email,
 			barrio: in_barrio
-		}, 'usuarios');
+		}, 'user');
 }
 
 function addPost(desc, in_reto, tit, src){
@@ -126,6 +137,8 @@ function googleLogin(email, password){
 //app.use(express.static('./public/html'))//change for 'html_server_test' to start on chat test page
 var io= socket(server);
 
+//console.log(readData('user'));
+
 //server listener
 io.on('connection',function(s){
 	console.log("\x1b[33m%s\x1b[0m",'new client conected -->	',s.id);
@@ -166,3 +179,6 @@ io.on('connection',function(s){
 		console.log('data added');
 	});
 });
+
+
+

@@ -51,6 +51,8 @@ export function DB_puppet(){
     addComment(puppet_desc, puppet_owner, pos_title_array[3]);
     addComment(puppet_desc, puppet_owner, pos_title_array[4]);
     
+    register(true, '123', 'readmin', 'admin@admin.com', 'readmin', 'el chuchal')
+    register(false, '456', 'reuser', 'user@user.com', 'reuser', 'el chuchal')
 
 }
 
