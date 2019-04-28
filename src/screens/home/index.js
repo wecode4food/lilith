@@ -12,7 +12,16 @@ import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
 import * as cons from "../../res/values/constants";
 import * as firebase from 'firebase';
+const styles = {
+  well: {
+    background: `#e8e9eb`,
+    boxShadow: `-2px 6px 23px 1px  rgba(0,0,0,0.75)`,
+  },
+  but:{
 
+    color: `#fff`,
+  }
+};
 var config = {
     apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
     authDomain: "adan-is-aive.firebaseapp.com",
@@ -71,17 +80,15 @@ class Home extends React.Component {
     }
 
     assignList() {
-        for (let i = 0; i < this.state.dataKeys.length; i++) {
-            firebase.database().ref('/reto/' + this.state.dataKeys[i].toString() + '/').on("value", snapshot => {
-                listS.push(snapshot.val());
-            });
-        }
+            for (let i = 0; i < this.state.dataKeys.length; i++) {
+                firebase.database().ref('/post/' + this.state.dataKeys[i].toString() + '/').on("value", snapshot => {
+                    listS.push(snapshot.val());
+                });
+            }
     }
 
-    refresh() {
-        setTimeout(() => {
-            this.setState({dummy: 1})
-        }, 100)
+    refresh(){
+        setTimeout(() => {this.setState({dummy: 1})}, 100)
     }
 
     componentDidMount() {
@@ -99,12 +106,12 @@ class Home extends React.Component {
         return (
             <div>
                 <main id="home_content">
-                    <h1 className="title_postulados">Postulados</h1>
-                    {listS.map((item, index) => {
-                        return (
-                            <Card className="card"
-                                  id={"post".concat((index + 1).toString())}>
+                <h1 className="title_postulados">Postulados</h1>
 
+                {listS.map((item, index) => {
+                    return (
+                        <Card className={this.props.card} style={styles.well} className="card" id={"post".concat((index+1).toString())}>
+                            <CardActionArea>
                                 <CardMedia
                                     component="img"
                                     alt="imagen x"
@@ -120,22 +127,17 @@ class Home extends React.Component {
                                     <Typography component="p">
                                         {listS[index].descripcion}
                                     </Typography>
-
-                                    <Typography variant="caption" gutterBottom>
-                                        Periodo: Desde {listS[index].start} hasta {listS[index].end}
-                                    </Typography>
                                 </CardContent>
+                            </CardActionArea>
+                            <CardActions className="card_button_container">
+                                <Button component={Link} to={`/reto/${this.state.dataKeys[index]}`} variant="contained" color="primary">
+                                    Postular
+                                </Button>
 
-                                <CardActions className="card_button_container">
-                                    <Button component={Link} to={`/reto/${this.state.dataKeys[index]}`}
-                                            variant="contained" color="primary">
-                                        Postular
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        );
-                    })}
-
+                            </CardActions>
+                        </Card>
+                    );
+                })}
                 </main>
             </div>
         )

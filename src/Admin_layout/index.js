@@ -29,6 +29,10 @@ const styles = theme => ({
   icon: {
     margin: theme.spacing.unit * 2,
   },
+  well: {
+    fontColor: `#fff`,
+  },
+
   iconHover: {
     margin: theme.spacing.unit * 2,
     '&:hover': {
@@ -36,6 +40,7 @@ const styles = theme => ({
     },
   },
 });
+
 class AdminLayout extends React.Component {
 
     render() {
@@ -45,10 +50,10 @@ class AdminLayout extends React.Component {
             <Fragment>
             <div className="App">
                 <div class="sidenav" position="static">
-                <Paper className={this.props.paper} id="cont_menuli">
-                  <MenuList>
+                <Paper className={this.props.paper}  id="cont_menuli">
+                  <MenuList style={styles.well}>
                     <MenuItem component={Link} to="/AdminRetos">Retos</MenuItem>
-                    <MenuItem>Encuesta</MenuItem>
+                    <MenuItem ><span style={styles.well}>Encuesta</span></MenuItem>
                     <MenuItem>Estadisticas</MenuItem>
                     <MenuItem>Gestion de contenido</MenuItem>
                   </MenuList>

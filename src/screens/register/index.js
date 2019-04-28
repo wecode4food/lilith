@@ -10,8 +10,21 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import * as cons from '../../res/values/constants';
+import * as firebase from 'firebase';
 
 
+const styles = {
+  well: {
+    background: `#e8e9eb`,
+    boxShadow: `-2px 6px 23px 1px  rgba(0,0,0,0.75)`,
+  },
+  but:{
+    
+    color: `#fff`,
+  }
+};
+
+let results;
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +35,8 @@ class Register extends React.Component {
             confir: '',
             cedu: '',
             barrio: '',
-            checker: true
+            checker: true,
+            dataKeys: []
 
         };
     }
@@ -30,6 +44,19 @@ class Register extends React.Component {
     handleChange = name => event => {
         this.setState({[name]: event.target.value});
     };
+
+    componentWillMount() {
+        firebase.database().ref('/reto/').on("value", snapshot => {
+            results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
+            console.log(snapshot.val());
+            console.log(results)//esto es para mostrar
+            let xd = Object.getOwnPropertyNames(results);
+            this.setState({dataKeys: xd});
+        });
+
+        this.setState({dummy_bool: false})
+
+    }
 
     checkPass(text) {
         if (text === this.state.contra) {
@@ -41,10 +68,11 @@ class Register extends React.Component {
     }
 
     render() {
+const {dataKeys} = this.state;
 
         return (
             <div className="login_register_container">
-                <Card  id="register_card">
+                <Card  id="register_card" style={styles.well}>
                     <CardContent>
                         <form>
                             <h2>Register</h2>
@@ -98,6 +126,7 @@ class Register extends React.Component {
                             <FormControl >
                                 <InputLabel htmlFor="barrio-select">Barrio</InputLabel>
                                 <Select
+                                    style={{width:'185px'}}
                                     value={this.state.barrio}
                                     onChange={this.handleChange('barrio')}
                                     inputProps={{
@@ -117,7 +146,7 @@ class Register extends React.Component {
 
                         <Button variant="contained" color="primary" style={{padding: 10}} onClick={cons.register(false,this.state.cedu, this.state.name, this.state.correo, this.state.contra, this.state.barrio)} disabled={this.state.checker}>
 
-                            <Typography variant="button">
+                            <Typography variant="button" style={styles.but}>
                                 Register
                             </Typography>
                         </Button>

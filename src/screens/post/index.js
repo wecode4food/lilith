@@ -4,8 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import * as firebase from 'firebase';
+import Button from '@material-ui/core/Button';
 
 import * as cons from '../../res/values/constants'
+import Card from "@material-ui/core/Card/Card";
+import CardMedia from "@material-ui/core/CardMedia/CardMedia";
+import CardContent from "@material-ui/core/CardContent/CardContent";
+import CardActions from "@material-ui/core/CardActions/CardActions";
+import {Link} from "react-router-dom";
 // import 'typeface-roboto';
 
 let results = [];
@@ -113,10 +119,44 @@ class Post extends React.Component {
 
 
             <div className="post">
-                <div class="post_description"><h3>{this.state.object_lov.titulo}</h3></div>
+                <div className="post_description"><h3>{this.state.object_lov.titulo}</h3></div>
                 <p>{this.state.object_lov.descripcion}</p>
 
+                {listS.map((item, index) => {
+                    return (
+                        <Card className="card"
+                              id={"post".concat((index + 1).toString())}>
+
+                            <CardMedia
+                                component="img"
+                                alt="imagen x"
+                                className={this.props.media}
+                                height="140"
+                                image={listS[index].src}
+                                title="imagen x"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {listS[index].titulo}
+                                </Typography>
+                                <Typography component="p">
+                                    {listS[index].descripcion}
+                                </Typography>
+                            </CardContent>
+
+                            <CardActions className="card_button_container">
+                                <Button component={Link} to={`/post/${this.state.dataKeys1[index]}`}
+                                        variant="contained" color="primary">
+                                    Postular
+                                </Button>
+
+                            </CardActions>
+                        </Card>
+                    );
+                })}
+
                 <TextField
+
                     id="outlined-multiline-flexible"
                     label="Post"
                     multiline
@@ -124,11 +164,17 @@ class Post extends React.Component {
                     value={this.state.multiline}
                     onChange={this.handleChange('multiline')}
                     className={this.props.textField}
+                    className = "write_post"
                     margin="normal"
                     helperText="hello"
                     variant="outlined"
                 />
 
+                <div class="button_post">
+                <Button  variant="contained" color="primary">
+                    Postular
+                </Button>
+                </div>
                 {/*<Typography>{this.state.multiline}</Typography>*/}
             </div>
 

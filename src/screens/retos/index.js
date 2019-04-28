@@ -60,18 +60,19 @@ class Retos extends React.Component {
             console.log(snapshot.val());
             console.log(results)//esto es para mostrar
             let xd = Object.getOwnPropertyNames(results_post);
-            this.setState({dataKeys1: xd, getFckanSht1: results});
+            this.setState({dataKeys1: xd, getFckanSht1: results_post});
             console.log(this.state.dataKeys1);
             console.log(this.state.getFckanSht1);
             let bad = this.state.getFckanSht1;
             let x;
             for (x in bad) {
                 console.log(bad[x]);
-                if (bad[x].reto === this.state.getFckanSht[params.id].titulo) {
+                if (bad[x].reto === this.state.getFckanSht[params.id.toString()].titulo) {
                     listS_post.push(bad[x]);
                 }
             }
             console.log(listS_post);
+            console.log(params.id);
         });
 
         this.setState({dummy_bool: false})
@@ -122,7 +123,7 @@ class Retos extends React.Component {
                                     alt="imagen x"
                                     className={this.props.media}
                                     height="140"
-                                    image={listS_post[index].srchelp}
+                                    image={listS_post[index].src}
                                     title="imagen x"
                                 />
                                 <CardContent>
@@ -135,7 +136,7 @@ class Retos extends React.Component {
                                 </CardContent>
 
                                 <CardActions className="card_button_container">
-                                    <Button component={Link} to={`/post/${this.state.dataKeys[index]}`}
+                                    <Button component={Link} to={`/post/${this.state.dataKeys1[index]}`}
                                             variant="contained" color="primary">
                                         Postular
                                     </Button>
