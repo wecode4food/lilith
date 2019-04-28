@@ -197,6 +197,29 @@ footer{
 .sidenav a:hover {
   color: #f1f1f1;
 }
+#cont_menuli{
+  margin-top: 30px;
+}
+#chart_container{
+  grid-column: 2/3;
+  grid-row: 2;
+}
+#statistic_description{
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#title_chart_page{
+  grid-column: 2;
+  grid-row: 1;
+}
+#statistics_container{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 10% 60% 20% 10%;
+  grid-gap: 20px;
+  grid-auto-rows: auto 1fr auto;
+}
 
 .App {
   text-align: center;
