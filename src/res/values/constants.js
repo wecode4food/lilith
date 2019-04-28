@@ -1,7 +1,7 @@
 import openSocket from 'socket.io-client';
 import * as firebasefront from 'firebase';
-import * as file from 'fs';
-//import FileUploader from "react-firebase-file-uploader";
+// import * as file from 'fs';
+// import FileUploader from "react-firebase-file-uploader";
 
 var config = {
     apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
@@ -19,9 +19,9 @@ if (!firebasefront.apps.length) {
 
 let lastResult = {};
 
-export function ServerTest(file) {
-    //DB_puppet();
-    UploadFile("aquello",file);
+export function ServerTest() {
+    DB_puppet();
+    
 }
 
 export function DB_puppet(){
@@ -33,17 +33,17 @@ export function DB_puppet(){
     let start_date = '2/2/2';
     let end_date = '9/9/9';
 
-    addReto(puppet_desc, ret_title_array[0], puppet_imgsrc);    
-    addReto(puppet_desc, ret_title_array[1], puppet_imgsrc);
-    addReto(puppet_desc, ret_title_array[2], puppet_imgsrc);
-    addReto(puppet_desc, ret_title_array[3], puppet_imgsrc);
-    addReto(puppet_desc, ret_title_array[4], puppet_imgsrc);
+    addPost(puppet_desc, puppet_owner,ret_title_array[0], puppet_imgsrc);    
+    addPost(puppet_desc, puppet_owner,ret_title_array[1], puppet_imgsrc);
+    addPost(puppet_desc, puppet_owner,ret_title_array[2], puppet_imgsrc);
+    addPost(puppet_desc, puppet_owner,ret_title_array[3], puppet_imgsrc);
+    addPost(puppet_desc, puppet_owner,ret_title_array[4], puppet_imgsrc);
 
-    addPost(puppet_desc, puppet_owner, pos_title_array[0], puppet_imgsrc,start_date,end_date);    
-    addPost(puppet_desc, puppet_owner, pos_title_array[1], puppet_imgsrc,start_date,end_date);
-    addPost(puppet_desc, puppet_owner, pos_title_array[2], puppet_imgsrc,start_date,end_date);
-    addPost(puppet_desc, puppet_owner, pos_title_array[3], puppet_imgsrc,start_date,end_date);
-    addPost(puppet_desc, puppet_owner, pos_title_array[4], puppet_imgsrc,start_date,end_date);
+    addReto(puppet_desc,  pos_title_array[0], puppet_imgsrc,start_date,end_date);    
+    addReto(puppet_desc,  pos_title_array[1], puppet_imgsrc,start_date,end_date);
+    addReto(puppet_desc,  pos_title_array[2], puppet_imgsrc,start_date,end_date);
+    addReto(puppet_desc,  pos_title_array[3], puppet_imgsrc,start_date,end_date);
+    addReto(puppet_desc,  pos_title_array[4], puppet_imgsrc,start_date,end_date);
 
     addComment(puppet_desc, puppet_owner, pos_title_array[0]);    
     addComment(puppet_desc, puppet_owner, pos_title_array[1]);
@@ -125,20 +125,6 @@ export function addPost(desc, persona,in_reto, tit, src) {
         });
 }
 
-//name es el titulo de el post, reto
-export function UploadFile(name,file){
-    var snap;
-    var ref = firebasefront.storage().ref();
-    //var fileUpload = document.getElementById("fileUpload"); //id input de archivo
-    //var btn = document.getElementById("file_btn"); //id boton
-    //var file = fileUpload.file[0]; // get the first file uploaded
-        ref.put(file).then(function(snapshot) {
-            console.log('Uploaded a blob or file!');
-            snap = snapshot.downloadURL;
-        
-    });
-    return snap;
-}
 
 export function login(email, pass) {
     webSocket.emit('login',
