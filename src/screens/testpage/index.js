@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ReactNotifications from 'react-browser-notifications';
 import Dropzone from "react-dropzone";
@@ -12,6 +14,7 @@ import * as cons from '../../res/values/constants'
 
 
 var storageRef = firebase.storage().ref();
+
 // import 'typeface-roboto';
 class TestPage extends React.Component {
     /*function get_post_desc() {
@@ -23,7 +26,8 @@ class TestPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            multiline: ''
+            multiline: '',
+            upload_progress: ''
         }
         this.showNotifications = this.showNotifications.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -33,7 +37,7 @@ class TestPage extends React.Component {
     showNotifications() {
         // If the Notifications API is supported by the browser
         // then show the notification
-            if (this.n.supported()) this.n.show();
+        if (this.n.supported()) this.n.show();
     }
 
     handleClick(event) {
@@ -51,10 +55,10 @@ class TestPage extends React.Component {
             uploadedFile: files[0]
         });
 
-        this.handleImageUpload1(files[0]);
+        this.handleImageUpload1(files[0], this);
     }
 
-    handleImageUpload1(file) {
+    handleImageUpload1(file, thisl) {
         var metadata = {
             contentType: 'image/jpeg',
         };
@@ -65,10 +69,11 @@ class TestPage extends React.Component {
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(
             firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-            function(snapshot) {
+            function (snapshot) {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
                 console.log('Upload is ' + progress + '% done');
+                thisl.setState({upload_progress: "Upload progress: "+progress+"%"});
                 switch (snapshot.state) {
                     case firebase.storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -78,7 +83,7 @@ class TestPage extends React.Component {
                         break;
                 }
             },
-            function(error) {
+            function (error) {
                 // Errors list: https://firebase.google.com/docs/storage/web/handle-errors
                 switch (error.code) {
                     case 'storage/unauthorized':
@@ -94,9 +99,11 @@ class TestPage extends React.Component {
                         break;
                 }
             },
-            function() {
+            function () {
                 // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
+                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    console.log('File available at', downloadURL);
+                });
             }
         );
     }
@@ -139,7 +146,14 @@ class TestPage extends React.Component {
                             >
                                 <input {...getInputProps()} />
                                 {
-                                    <p>Drop a file (or click here) to upload as the image for the dish.</p>
+                                    <Card>
+                                        <CardContent>
+                                            <p>Arrastre y suelte una foto para subirla, también puede darle click para seleccionarla</p>
+                                            <Typography>
+                                                {this.state.upload_progress}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
                                 }
                             </div>
                         )
