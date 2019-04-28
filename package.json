@@ -8,6 +8,7 @@
     "firebase": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-browser-notifications": "^1.0.14",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",

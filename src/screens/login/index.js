@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/es/Typography/Typography";
 import 'typeface-roboto';
 
 import * as cons from '../../res/values/constants';
+import ReactNotifications from 'react-browser-notifications';
 
 
 class Login extends React.Component {
@@ -17,18 +18,50 @@ class Login extends React.Component {
             contra: ''
 
         };
+        this.showNotifications = this.showNotifications.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    showNotifications() {
+        // If the Notifications API is supported by the browser
+        // then show the notification
+        if (this.n.supported()) this.n.show();
+    }
+
+    handleClick(event) {
+        // Do something here such as
+        // console.log("Notification Clicked") OR
+        // window.focus() OR
+        // window.open("http://www.google.com")
+
+        // Lastly, Close the notification
+        this.n.close(event.target.tag);
     }
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
     };
 
+    login(user, pass){
+        cons.login(user, pass);
+        this.showNotifications();
+    }
+
+
 
     render() {
 
+        cons.webSocket.on('showNotif', this.showNotifications);
+
         return (
             <div className="login_register_container">
-
+                <ReactNotifications
+                    onRef={ref => (this.n = ref)} // Required
+                    title="Test" // Required
+                    body="Login Attemped!"
+                    icon="icon.png"
+                    tag="abcdef"
+                    onClick={event => this.handleClick(event)}
+                />
               <Card id="login_card">
                   <CardContent>
                   <form className ="frm_login">
@@ -54,8 +87,8 @@ class Login extends React.Component {
                     <br/>
                     <br/>
 
-                    <Button variant="contained"   style={{padding: 10}} color="primary" onClick={cons.login(this.state.correo, this.state.contra)}>
 
+                    <Button variant="contained"   style={{padding: 10}} color="primary" onClick={this.showNotifications}>
                         <Typography variant="button">
                             Login
                         </Typography>
