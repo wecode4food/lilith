@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import * as firebase from 'firebase';
+import Button from '@material-ui/core/Button';
 
 import * as cons from '../../res/values/constants'
 // import 'typeface-roboto';
@@ -53,10 +54,11 @@ class Post extends React.Component {
 
 
             <div className="post">
-                <div class="post_description"><h3>{this.state.object_lov.titulo}</h3></div>
+                <div className="post_description"><h3>{this.state.object_lov.titulo}</h3></div>
                 <p>{this.state.object_lov.descripcion}</p>
 
                 <TextField
+
                     id="outlined-multiline-flexible"
                     label="Post"
                     multiline
@@ -64,11 +66,16 @@ class Post extends React.Component {
                     value={this.state.multiline}
                     onChange={this.handleChange('multiline')}
                     className={this.props.textField}
+                    className = "write_post"
                     margin="normal"
                     helperText="hello"
                     variant="outlined"
                 />
-
+                <div class="button_post">
+                <Button  variant="contained" color="primary">
+                    Postular
+                </Button>
+                </div>
                 {/*<Typography>{this.state.multiline}</Typography>*/}
             </div>
 

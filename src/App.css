@@ -60,6 +60,29 @@ main{
   grid-column: 3;
   grid-row: 1;
 }
+.post_description{
+  grid-column: 2;
+  grid-row: 1;
+}
+.post p{
+  grid-column: 2;
+  grid-row: 2;
+}
+.write_post{
+    grid-column: 2;
+    grid-row: 3;
+}
+.button_post{
+  grid-column: 2;
+  grid-row: 4;
+}
+.post{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 15% 60% 15%;
+  grid-gap: 10px;
+  grid-auto-rows: min-content;
+}
 #post1{
   grid-column:2;
   grid-row:2;
