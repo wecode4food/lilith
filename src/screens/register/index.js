@@ -98,6 +98,7 @@ class Register extends React.Component {
                             <FormControl >
                                 <InputLabel htmlFor="barrio-select">Barrio</InputLabel>
                                 <Select
+                                    style={{width:'185px'}}
                                     value={this.state.barrio}
                                     onChange={this.handleChange('barrio')}
                                     inputProps={{

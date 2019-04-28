@@ -55,7 +55,7 @@ main{
 .login_register_container{
   text-align: center;
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 5% 30% 30% 30% 5%;
   grid-auto-rows: min-content;
 }
 
