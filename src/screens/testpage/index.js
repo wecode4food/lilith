@@ -24,6 +24,10 @@ class TestPage extends React.Component {
         this.setState({ [name]: event.target.value });
     };
 
+    getFile(){
+        return document.getElementById("fileUpload").file[0];
+    }
+
     render() {
 
         return (
@@ -34,8 +38,13 @@ class TestPage extends React.Component {
                         Texto
                     </Typography>
                 </Button>
+                <input type = "file" id = 'fileUpload' />
+                <Button id = "file_btn" variant = "contained" onClick={() => (cons.ServerTest(document.getElementById("fileUpload").file[0]))} >
+                    <Typography>
+                        subir
+                    </Typography>
+                </Button>
             </div>
-
         );
     }
 }

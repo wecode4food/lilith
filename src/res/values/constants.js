@@ -1,7 +1,7 @@
 import openSocket from 'socket.io-client';
 import * as firebasefront from 'firebase';
 import * as file from 'fs';
-import FileUploader from "react-firebase-file-uploader";
+//import FileUploader from "react-firebase-file-uploader";
 
 var config = {
     apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
@@ -19,9 +19,9 @@ if (!firebasefront.apps.length) {
 
 let lastResult = {};
 
-export function ServerTest() {
+export function ServerTest(file) {
     //DB_puppet();
-    UploadFile('https://www.elheraldo.co/sites/default/files/styles/width_860/public/articulo/2017/08/26/malecon.jpg?itok=rdPy_tQA');
+    UploadFile("aquello",file);
 }
 
 export function DB_puppet(){
@@ -125,19 +125,19 @@ export function addPost(desc, persona,in_reto, tit, src) {
         });
 }
 
-export function UploadFile(uri){
-    
+//name es el titulo de el post, reto
+export function UploadFile(name,file){
+    var snap;
     var ref = firebasefront.storage().ref();
-
-    // Create a reference to 'mountains.jpg'
-    var mountainsRef = ref.child('mountains.jpg');
-
-    // Create a reference to 'images/mountains.jpg'
-    var mountainImagesRef = ref.child('images/mountains.jpg');
-    
-    ref.putString(uri).then(function(snapshot) {
-    console.log('Uploaded a raw string!');
+    //var fileUpload = document.getElementById("fileUpload"); //id input de archivo
+    //var btn = document.getElementById("file_btn"); //id boton
+    //var file = fileUpload.file[0]; // get the first file uploaded
+        ref.put(file).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+            snap = snapshot.downloadURL;
+        
     });
+    return snap;
 }
 
 export function login(email, pass) {
