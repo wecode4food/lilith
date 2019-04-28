@@ -45,17 +45,17 @@ class AdminLayout extends React.Component {
             <div className="App">
                 <div class="sidenav">
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Clients</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Retos</a></li>
+                    <li><a href="#">Encuesta</a></li>
+                    <li><a href="#">Estadisticas</a></li>
+                    <li><a href="#">Gestion de contenido</a></li>
                   </ul>
                 </div>
                 <main>
                     <div/>
                     {children}
                 </main>
-              
+
             </div>
             </Fragment>
         );
