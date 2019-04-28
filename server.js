@@ -31,7 +31,7 @@ function writeData(data, child) {
 	// Write the new post's data simultaneously in the posts list and the user's post list.
 	var updates = {};
 	updates[('/'+child+'/') + newPostKey] = data;
-  
+	data.key = newPostKey;
 	return firebase.database().ref().update(updates);
 }
 
@@ -68,6 +68,16 @@ function addPost(desc, in_reto, tit, src){
 		}, 'post');
 }
 
+function addReto(in_desc, in_persona, int_title, src){
+	writeData(
+		{
+			descripcion: desc,
+			owner: in_persona,
+			titulo: tit,
+			srchelp: src
+		}, 'reto');
+}
+
 function register(admin, cc, nombre, email, password, barrio){
 	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 		// Handle Errors here.
@@ -78,13 +88,19 @@ function register(admin, cc, nombre, email, password, barrio){
 	
 }
 
-function login(email, password){
+function login(email, password, client){
+	let auth = true;
 	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
 		// Handle Errors here.
+		auth = false;
 		var errorCode = error.code;
 		var errorMessage = error.message;
 		console.log("fallo de ingreso ", errorCode, " ", errorMessage);
 	});
+	if(auth)
+	{
+		client.emit('showNotif',{});
+	}
 }
 
 function googleLogin(email, password){
@@ -130,7 +146,7 @@ io.on('connection',function(s){
 	});
 
 	s.on('login', (log_data) => {
-		login(log_data.email, log_data.password);
+		login(log_data.email, log_data.password, s);
 		console.log("client ", s.id, " loged as ", log_data.email);
 	});
 
@@ -147,5 +163,6 @@ io.on('connection',function(s){
 
 	s.on('write', (c) => {
 		writeData(c.data, c.child);
+		console.log('data added');
 	});
 });
