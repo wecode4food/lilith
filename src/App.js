@@ -7,12 +7,14 @@ import Login from './screens/login';
 import Register from './screens/register';
 import Home from './screens/home';
 import Post from './screens/post';
+import Vote from './screens/vote';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import 'typeface-roboto';
 
-class App extends React.Component {
+class App extends React.Component{
 
   render(){
 
@@ -24,6 +26,7 @@ class App extends React.Component {
                   <Route path="/login" render={props => <Login {...props}/>}/>
                   <Route path="/register" render={props => <Register {...props}/>}/>
                   <Route path="/post" render={props => <Post {...props}/>}/>
+                  <Route path="/vote" render={props => <Vote {...props}/>}/>
               </Switch>
           </Layout>
       </BrowserRouter>

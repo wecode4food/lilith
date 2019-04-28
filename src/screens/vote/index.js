@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../App.css';
 import classNames from 'classnames';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import Typography from '@material-ui/core/Typography';
-import 'typeface-roboto';
+import Forum from '@material-ui/icons/Forum';
+
+import Paper from '@material-ui/core/Paper';
 class Vote extends React.Component {
-      /*function get_post_desc() {
-        return (
 
-        );
-
-    }*/
     constructor(props){
       super(props);
       this.state = {
@@ -29,26 +29,68 @@ class Vote extends React.Component {
         return (
 
           <div className="vote_container">
-          <FormControl >
-              <InputLabel htmlFor="categoria-select">Categoria</InputLabel>
-              <Select
-                  value={this.state.barrio}
-                  onChange={this.handleChange('Categoria')}
-                  inputProps={{
-                      name: 'Categoria',
-                      id: 'categoria',
-                  }}
-              >
-                  <MenuItem value={"opcion1"}>Opcion 1</MenuItem>
-                  <MenuItem value={"opcion2"}>Opcion 2</MenuItem>
-                  <MenuItem value={"opcion3"}>Opcion 3</MenuItem>
-                  <MenuItem value={"opcion4"}>Opcion 4</MenuItem>
-                  <MenuItem value={"opcion5"}>Opcion 5</MenuItem>
-              </Select>
-          </FormControl>
-          </div>
 
-        );
+            <div className="cont_txt">
+                <h2>tittle</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse faucibus felis lorem, sed dignissim quam ultrices vitae. Quisque a dictum ligula, at viverra quam</p>
+            </div>
+
+            <br/>
+
+
+            <div className = "post_visualization" id="post_v2">
+            <Paper className={this.props.root} style={{padding:'1em'}} elevation={1}>
+              <Typography variant="h5" component="h3">
+                This is a sheet of paper.
+              </Typography>
+              <Typography component="p"  style={{textAlign:'left'}}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id tincidunt risus. Suspendisse a diam fringilla, feugiat risus ut, semper libero.
+              </Typography>
+              <div className="post_adds">
+                <ul className="vote_info">
+                    <li><Forum/><label className="numero_mensajes"></label></li>
+
+                </ul>
+              </div>
+            </Paper>
+            </div>
+
+            <div className = "post_visualization" id="post_v3">
+            <Paper className={this.props.root} style={{padding:'1em'}} elevation={1}>
+              <Typography variant="h5" component="h3">
+                This is a sheet of paper.
+              </Typography>
+              <Typography component="p" style={{textAlign:'left'}}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id tincidunt risus. Suspendisse a diam fringilla, feugiat risus ut, semper libero.
+              </Typography>
+              <div className="post_adds">
+              <ul className="vote_info">
+                  <li><Forum/><label className="numero_mensajes"></label></li>
+
+              </ul>
+              </div>
+            </Paper>
+            </div>
+
+            <div className = "post_visualization" id="post_v4">
+            <Paper className={this.props.root} style={{padding:'1em'}} elevation={1}>
+              <Typography variant="h5" component="h3">
+                This is a sheet of paper.
+              </Typography>
+              <Typography component="p" style={{textAlign:'left'}}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id tincidunt risus. Suspendisse a diam fringilla, feugiat risus ut, semper libero.
+              </Typography>
+              <div className="post_adds">
+              <ul className="vote_info">
+                  <li><Forum/><label className="numero_mensajes"></label></li>
+
+              </ul>
+              </div>
+            </Paper>
+            </div>
+
+            </div>
+            );
     }
 }
 

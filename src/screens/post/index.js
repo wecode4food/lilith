@@ -26,7 +26,7 @@ class Post extends React.Component {
         return (
 
           <div className="post">
-            <div class="post_description"><h3>Titulo y descripcion del card seleccionado de home</h3></div>
+            <div className="post_description"><h3>Titulo y descripcion del card seleccionado de home</h3></div>
             <TextField
              id="outlined-multiline-flexible"
              label="Post"
@@ -39,7 +39,7 @@ class Post extends React.Component {
              helperText="hello"
              variant="outlined"
              />
-            //<Typography>{this.state.multiline}</Typography>
+
           </div>
 
         );

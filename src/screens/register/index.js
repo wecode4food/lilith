@@ -15,6 +15,7 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
             correo: '',
             contra: '',
             confir: '',
@@ -39,18 +40,19 @@ class Register extends React.Component {
     }
 
     render() {
-        //const {kis} = this.state;
+
         return (
-            <div>
-                <Card>
+            <div className="login_register_container">
+                <Card  id="register_card">
                     <CardContent>
                         <form>
+                            <h2>Register</h2>
                             <TextField
                                 id="name"
                                 label="Nombre"
                                 style={{margin: 5}}
-                                value={this.state.correo}
-                                onChange={this.handleChange('correo')}
+                                value={this.state.name}
+                                onChange={this.handleChange('name')}
                                 margin="normal"
                             />
                             <br/>
@@ -110,9 +112,9 @@ class Register extends React.Component {
                             </FormControl>
                         </form>
                     </CardContent>
-                    <CardActions>
-                        <Button variant="contained" disabled={this.state.checker}>
-                            <Typography>
+                    <CardActions className="card_button_container">
+                        <Button variant="contained" color="primary" style={{padding: 10}} disabled={this.state.checker}>
+                            <Typography variant="button">
                                 Register
                             </Typography>
                         </Button>
