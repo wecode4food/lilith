@@ -5,8 +5,8 @@ const socket 	= require('socket.io')
 const firebase  = require('firebase')
 var app = express();
 var provider = new firebase.auth.GoogleAuthProvider();
-let results = {};
-let listS = [];
+//let results = {};
+//let listS = [];
 
 var server = app.listen(4500,function(){
 	console.log('');
@@ -40,7 +40,7 @@ function writeData(data, child) {
 function readData(in_child){
 	
 	firebase.database().ref('/'+in_child+'/').on("value", snapshot => {
-		results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
+		var results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
 		//console.log(snapshot.val());
             //console.log(results)//esto es para mostrar
             let xd = Object.getOwnPropertyNames(results);
@@ -54,7 +54,7 @@ function readData(in_child){
                 listS.push(bad[x]);
 
             }
-		return listS;
+		return results;
 	});
 }
 
@@ -111,6 +111,11 @@ function login(email, password, client){
 	if(auth)
 	{
 		client.emit('showNotif',{});
+		if(email === 'admin@admin.com'){
+			client.emit('admin',{admin:true});
+		}else{
+			client.emit('admin',{admin:false});
+		}
 	}
 }
 
@@ -137,7 +142,7 @@ function googleLogin(email, password){
 //app.use(express.static('./public/html'))//change for 'html_server_test' to start on chat test page
 var io= socket(server);
 
-//console.log(readData('user'));
+console.log(readData('user'));
 
 //server listener
 io.on('connection',function(s){
