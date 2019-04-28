@@ -7,7 +7,10 @@ import Login from './screens/login';
 import Register from './screens/register';
 import Home from './screens/home';
 import Post from './screens/post';
-import Vote from './screens/vote';
+
+import TestPage from './screens/testpage';
+import Vote from './screens/vote'
+
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -25,8 +28,13 @@ class App extends React.Component{
                   <Route exact path="/" render={props => <Home {...props}/>}/>
                   <Route path="/login" render={props => <Login {...props}/>}/>
                   <Route path="/register" render={props => <Register {...props}/>}/>
-                  <Route path="/post" render={props => <Post {...props}/>}/>
+
+                  {/*<Route path="/post" render={props => <Post {...props}/>}/>*/}
                   <Route path="/vote" render={props => <Vote {...props}/>}/>
+                  <Route path="/testpage" render={props => <TestPage {...props}/>}/>
+
+                  <Route path="/post/:id" component={Post}/>
+
               </Switch>
           </Layout>
       </BrowserRouter>

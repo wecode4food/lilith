@@ -9,6 +9,7 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import * as cons from '../../res/values/constants';
 
 
 class Register extends React.Component {
@@ -113,7 +114,9 @@ class Register extends React.Component {
                         </form>
                     </CardContent>
                     <CardActions className="card_button_container">
-                        <Button variant="contained" color="primary" style={{padding: 10}} disabled={this.state.checker}>
+
+                        <Button variant="contained" color="primary" style={{padding: 10}} onClick={cons.register(false,this.state.cedu, this.state.name, this.state.correo, this.state.contra, this.state.barrio)} disabled={this.state.checker}>
+
                             <Typography variant="button">
                                 Register
                             </Typography>
