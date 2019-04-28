@@ -29,7 +29,7 @@ class TestPage extends React.Component {
         return (
 
             <div className="post">
-                <Button variant = "contained" onClick={() => (cons.ServerTest)}>
+                <Button variant = "contained" onClick={() => (cons.ServerTest())}>
                     <Typography>
                         Texto
                     </Typography>
