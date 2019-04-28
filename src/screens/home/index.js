@@ -10,150 +10,126 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
-import 'typeface-roboto';
+import * as cons from "../../res/values/constants";
+import * as firebase from 'firebase';
+
+var config = {
+    apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
+    authDomain: "adan-is-aive.firebaseapp.com",
+    databaseURL: "https://adan-is-aive.firebaseio.com",
+    projectId: "adan-is-aive",
+    storageBucket: "adan-is-aive.appspot.com",
+    messagingSenderId: "738898624761"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(config)
+
+}
+let results;
+let listS = [];
+
+// import 'typeface-roboto';
 class Home extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataKeys: [],
+            listItem: [],
+            dummy_bool: false,
+            getFckanSht: {},
+            dummy: '1'
+        };
+        for (let i = 0; i < this.state.dataKeys.length; i++) {
+            this.assignList(this.state.dataKeys[i]);
+        }
+        console.log(this.state.dataKeys);
+    }
+
+    componentWillMount() {
+        firebase.database().ref('/post/').on("value", snapshot => {
+            results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
+            console.log(snapshot.val());
+            console.log(results)//esto es para mostrar
+            let xd = Object.getOwnPropertyNames(results);
+            this.setState({dataKeys: xd, getFckanSht: results});
+            console.log(this.state.dataKeys);
+            console.log(this.state.getFckanSht);
+            let bad = this.state.getFckanSht;
+            let x;
+            for (x in bad) {
+                console.log(bad[x]);
+                listS.push(bad[x]);
+
+            }
+            console.log(listS);
+        });
+
+        this.setState({dummy_bool: false})
+
+    }
+
+    assignList() {
+            for (let i = 0; i < this.state.dataKeys.length; i++) {
+                firebase.database().ref('/post/' + this.state.dataKeys[i].toString() + '/').on("value", snapshot => {
+                    listS.push(snapshot.val());
+                });
+            }
+    }
+
+    refresh(){
+        setTimeout(() => {this.setState({dummy: 1})}, 100)
+    }
+
+    componentDidMount() {
+
+        console.log(this.state.listItem);
+        this.refresh();
+
+    }
+
+
     render() {
+
+        const {listItem} = this.state;
+
         return (
             <div>
                 <main id="home_content">
-                <h1 class="title_postulados">Postulados</h1>
-                <Card className={this.props.card} class="card" id="post1">
-                  <CardActionArea>
-                    <CardMedia
+                <h1 className="title_postulados">Postulados</h1>
 
-                      component="img"
-                      alt="imagen x"
-                      className={this.props.media}
-                      height="140"
-                      image="https://pbs.twimg.com/profile_images/446356636710363136/OYIaJ1KK.png"
-                      title="imagen x"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Imagen x
-                      </Typography>
+                {listS.map((item, index) => {
+                    return (
+                        <Card className={this.props.card} className="card" id={"post".concat((index+1).toString())}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    alt="imagen x"
+                                    className={this.props.media}
+                                    height="140"
+                                    image={listS[index].srchelp}
+                                    title="imagen x"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {listS[index].reto}
+                                    </Typography>
+                                    <Typography component="p">
+                                        {listS[index].descripcion}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions className="card_button_container">
+                                <Button component={Link} to={`/post/${this.state.dataKeys[index]}`} variant="contained" color="primary">
+                                    Postular
+                                </Button>
 
-                      <Typography component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lorem id purus consectetur tincidunt imperdiet at risus. Integer eget nunc in tortor accumsan ornare.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions class="card_button_container">
-                    <Button component={Link} to="/post" variant="contained" color="primary">
-                      Postular
-                    </Button>
-
-                  </CardActions>
-                </Card>
-                <Card className={this.props.card} class="card" id="post2">
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="imagen x"
-                      className={this.props.media}
-                      height="140"
-                      image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXMzMzPz8+RkZHLy8uTk5OWlpbDw8PIyMidnZ3GxsbBwcG1tbWYmJi6urqioqKwsLCoqKixsbFgFY5SAAADNUlEQVR4nO3XyZbjKgyAYTNjzJT3f9kWOHFcU/reRaW9+L9Fyqkj5yALBF4WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9KiZeXL+5TX4P/et/blW5dTWZcri3b7ud/TYu6phe3qdSzjZv5HFyizcX87pD/n5J1jNaVcR11jjrO4TXt5NuLFNdsc3S6fQouzkbntt8f93+mst3WtegaFlV092u3m8yylGsKm60/TjjVpdpryiOvU3CoNq3JxvWdObzmZxVUc34JMQaZcVU+TddejdocI70vriPjNY5aqyLP4xQsD0mez/55Fftg1CaDTLmPy5aLCtWNy+Ju95GGdpPsF397zL89eFnl9lOwVHYs4zX/XPy3C2mMXPXsVcnzyScpyxr38e9/hjiLU4/iBD/KO2t4ClZjAsg86O46GQ4+NduNjHb2ilEWn9sYYnhmmJw1Y6Geu+SatlzX5RSsct8ztJfKUGlro5eZOmfYYnRTfrabxcT6CDLNNlNlAp/uq3JjUsspWLl+78TvTeEvRob5ZmQthv1rk/4zdw+ZdEfNUo7d9Q/3RblRapaewWrfPdRt/6nLUGZzsg6fNVy+1nCU2LqP41aqRLepb2t4qT1/GZ1GJ0lhrsMw1uHeREM890Rn++fVJSuznYNlHY7UZEpfZx2WMutSdJF2P2fb971UTmmyWp/j9tvcKoMU/EMvrePnwoV6qepuP2yd9kM39sM8hlhcO0YaYo72dty37ftGmPvhESw/N/fDGK+T4TYX0eNMM6ZYlb4qx5RRi6afB9PN9ZKjf3y9P477meYRLImXcaax7TIZyu4XvZJmMWZXk+HKXB0NUz7lvzkfcSHKoaw/iyglLWqUL30I9jnK+S66V28lbybnLBfHC8946FnnqveG2eflsf2ppqVmwR5vG1InG6vdi3UKlo5bnW3/IJMfhRZlrLPHLEkGV/esQpe3qu3o+avOfub5bK5blBelPZVTcJBXzNyutRua1fvHK0TwPhyX6fQKFJI3889p+q0SYb4EG+/91TZDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfOsP4lsa8TKp1xgAAAAASUVORK5CYII="
-                      title="imagen x"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Imagen x
-                      </Typography>
-                      <Typography component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lorem id purus consectetur tincidunt imperdiet at risus. Integer eget nunc in tortor accumsan ornare.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions class="card_button_container">
-                    <Button component={Link} to="/post" variant="contained" color="primary">
-                      Postular
-                    </Button>
-
-                  </CardActions>
-                </Card>
-                <Card className={this.props.card} class="card" id="post3">
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="imagen x"
-                      className={this.props.media}
-                      height="140"
-                      image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXMzMzPz8+RkZHLy8uTk5OWlpbDw8PIyMidnZ3GxsbBwcG1tbWYmJi6urqioqKwsLCoqKixsbFgFY5SAAADNUlEQVR4nO3XyZbjKgyAYTNjzJT3f9kWOHFcU/reRaW9+L9Fyqkj5yALBF4WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9KiZeXL+5TX4P/et/blW5dTWZcri3b7ud/TYu6phe3qdSzjZv5HFyizcX87pD/n5J1jNaVcR11jjrO4TXt5NuLFNdsc3S6fQouzkbntt8f93+mst3WtegaFlV092u3m8yylGsKm60/TjjVpdpryiOvU3CoNq3JxvWdObzmZxVUc34JMQaZcVU+TddejdocI70vriPjNY5aqyLP4xQsD0mez/55Fftg1CaDTLmPy5aLCtWNy+Ju95GGdpPsF397zL89eFnl9lOwVHYs4zX/XPy3C2mMXPXsVcnzyScpyxr38e9/hjiLU4/iBD/KO2t4ClZjAsg86O46GQ4+NduNjHb2ilEWn9sYYnhmmJw1Y6Geu+SatlzX5RSsct8ztJfKUGlro5eZOmfYYnRTfrabxcT6CDLNNlNlAp/uq3JjUsspWLl+78TvTeEvRob5ZmQthv1rk/4zdw+ZdEfNUo7d9Q/3RblRapaewWrfPdRt/6nLUGZzsg6fNVy+1nCU2LqP41aqRLepb2t4qT1/GZ1GJ0lhrsMw1uHeREM890Rn++fVJSuznYNlHY7UZEpfZx2WMutSdJF2P2fb971UTmmyWp/j9tvcKoMU/EMvrePnwoV6qepuP2yd9kM39sM8hlhcO0YaYo72dty37ftGmPvhESw/N/fDGK+T4TYX0eNMM6ZYlb4qx5RRi6afB9PN9ZKjf3y9P477meYRLImXcaax7TIZyu4XvZJmMWZXk+HKXB0NUz7lvzkfcSHKoaw/iyglLWqUL30I9jnK+S66V28lbybnLBfHC8946FnnqveG2eflsf2ppqVmwR5vG1InG6vdi3UKlo5bnW3/IJMfhRZlrLPHLEkGV/esQpe3qu3o+avOfub5bK5blBelPZVTcJBXzNyutRua1fvHK0TwPhyX6fQKFJI3889p+q0SYb4EG+/91TZDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfOsP4lsa8TKp1xgAAAAASUVORK5CYII="
-                      title="imagen x"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Imagen x
-                      </Typography>
-                      <Typography component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lorem id purus consectetur tincidunt imperdiet at risus. Integer eget nunc in tortor accumsan ornare.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions class="card_button_container">
-                    <Button component={Link} to="/post" variant="contained" color="primary">
-                      Postular
-                    </Button>
-
-                  </CardActions>
-                </Card>
-                <Card className={this.props.card} class="card" id="post4">
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="imagen x"
-                      className={this.props.media}
-                      height="140"
-                      image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXMzMzPz8+RkZHLy8uTk5OWlpbDw8PIyMidnZ3GxsbBwcG1tbWYmJi6urqioqKwsLCoqKixsbFgFY5SAAADNUlEQVR4nO3XyZbjKgyAYTNjzJT3f9kWOHFcU/reRaW9+L9Fyqkj5yALBF4WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9KiZeXL+5TX4P/et/blW5dTWZcri3b7ud/TYu6phe3qdSzjZv5HFyizcX87pD/n5J1jNaVcR11jjrO4TXt5NuLFNdsc3S6fQouzkbntt8f93+mst3WtegaFlV092u3m8yylGsKm60/TjjVpdpryiOvU3CoNq3JxvWdObzmZxVUc34JMQaZcVU+TddejdocI70vriPjNY5aqyLP4xQsD0mez/55Fftg1CaDTLmPy5aLCtWNy+Ju95GGdpPsF397zL89eFnl9lOwVHYs4zX/XPy3C2mMXPXsVcnzyScpyxr38e9/hjiLU4/iBD/KO2t4ClZjAsg86O46GQ4+NduNjHb2ilEWn9sYYnhmmJw1Y6Geu+SatlzX5RSsct8ztJfKUGlro5eZOmfYYnRTfrabxcT6CDLNNlNlAp/uq3JjUsspWLl+78TvTeEvRob5ZmQthv1rk/4zdw+ZdEfNUo7d9Q/3RblRapaewWrfPdRt/6nLUGZzsg6fNVy+1nCU2LqP41aqRLepb2t4qT1/GZ1GJ0lhrsMw1uHeREM890Rn++fVJSuznYNlHY7UZEpfZx2WMutSdJF2P2fb971UTmmyWp/j9tvcKoMU/EMvrePnwoV6qepuP2yd9kM39sM8hlhcO0YaYo72dty37ftGmPvhESw/N/fDGK+T4TYX0eNMM6ZYlb4qx5RRi6afB9PN9ZKjf3y9P477meYRLImXcaax7TIZyu4XvZJmMWZXk+HKXB0NUz7lvzkfcSHKoaw/iyglLWqUL30I9jnK+S66V28lbybnLBfHC8946FnnqveG2eflsf2ppqVmwR5vG1InG6vdi3UKlo5bnW3/IJMfhRZlrLPHLEkGV/esQpe3qu3o+avOfub5bK5blBelPZVTcJBXzNyutRua1fvHK0TwPhyX6fQKFJI3889p+q0SYb4EG+/91TZDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfOsP4lsa8TKp1xgAAAAASUVORK5CYII="
-                      title="imagen x"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Imagen x
-                      </Typography>
-                      <Typography component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lorem id purus consectetur tincidunt imperdiet at risus. Integer eget nunc in tortor accumsan ornare.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions class="card_button_container">
-                    <Button component={Link} to="/post" variant="contained" color="primary">
-                      Postular
-                    </Button>
-
-                  </CardActions>
-                </Card>
-                <Card className={this.props.card} class="card" id="post5">
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="imagen x"
-                      className={this.props.media}
-                      height="140"
-                      image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXMzMzPz8+RkZHLy8uTk5OWlpbDw8PIyMidnZ3GxsbBwcG1tbWYmJi6urqioqKwsLCoqKixsbFgFY5SAAADNUlEQVR4nO3XyZbjKgyAYTNjzJT3f9kWOHFcU/reRaW9+L9Fyqkj5yALBF4WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9KiZeXL+5TX4P/et/blW5dTWZcri3b7ud/TYu6phe3qdSzjZv5HFyizcX87pD/n5J1jNaVcR11jjrO4TXt5NuLFNdsc3S6fQouzkbntt8f93+mst3WtegaFlV092u3m8yylGsKm60/TjjVpdpryiOvU3CoNq3JxvWdObzmZxVUc34JMQaZcVU+TddejdocI70vriPjNY5aqyLP4xQsD0mez/55Fftg1CaDTLmPy5aLCtWNy+Ju95GGdpPsF397zL89eFnl9lOwVHYs4zX/XPy3C2mMXPXsVcnzyScpyxr38e9/hjiLU4/iBD/KO2t4ClZjAsg86O46GQ4+NduNjHb2ilEWn9sYYnhmmJw1Y6Geu+SatlzX5RSsct8ztJfKUGlro5eZOmfYYnRTfrabxcT6CDLNNlNlAp/uq3JjUsspWLl+78TvTeEvRob5ZmQthv1rk/4zdw+ZdEfNUo7d9Q/3RblRapaewWrfPdRt/6nLUGZzsg6fNVy+1nCU2LqP41aqRLepb2t4qT1/GZ1GJ0lhrsMw1uHeREM890Rn++fVJSuznYNlHY7UZEpfZx2WMutSdJF2P2fb971UTmmyWp/j9tvcKoMU/EMvrePnwoV6qepuP2yd9kM39sM8hlhcO0YaYo72dty37ftGmPvhESw/N/fDGK+T4TYX0eNMM6ZYlb4qx5RRi6afB9PN9ZKjf3y9P477meYRLImXcaax7TIZyu4XvZJmMWZXk+HKXB0NUz7lvzkfcSHKoaw/iyglLWqUL30I9jnK+S66V28lbybnLBfHC8946FnnqveG2eflsf2ppqVmwR5vG1InG6vdi3UKlo5bnW3/IJMfhRZlrLPHLEkGV/esQpe3qu3o+avOfub5bK5blBelPZVTcJBXzNyutRua1fvHK0TwPhyX6fQKFJI3889p+q0SYb4EG+/91TZDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfOsP4lsa8TKp1xgAAAAASUVORK5CYII="
-                      title="imagen x"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Imagen x
-                      </Typography>
-                      <Typography component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lorem id purus consectetur tincidunt imperdiet at risus. Integer eget nunc in tortor accumsan ornare.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions class="card_button_container">
-                    <Button component={Link} to="/post" variant="contained" color="primary">
-                      Postular
-                    </Button>
-
-                  </CardActions>
-                </Card>
-
-
+                            </CardActions>
+                        </Card>
+                    );
+                })}
                 </main>
-
             </div>
         )
             ;

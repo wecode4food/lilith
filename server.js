@@ -122,6 +122,7 @@ io.on('connection',function(s){
 	s.on('test', ()=>{
 		console.log("\x1b[36m%s\x1b[0m","--> ", s.id, " has executed a test")
 	})
+<<<<<<< HEAD
 
 	s.on('register', (regist_data) => {
 		register(regist_data.admin, regist_data.cc, regist_data.nombre, regist_data.email, regist_data.password, regist_data.barrio);
@@ -149,3 +150,32 @@ io.on('connection',function(s){
 		writeData(c.data, c.child);
 	});
 });
+=======
+
+	s.on('register', (regist_data) => {
+		register(regist_data.admin, regist_data.cc, regist_data.nombre, regist_data.email, regist_data.password, regist_data.barrio);
+		addUserData(regist_data.admin, regist_data.cc, regist_data.nombre, regist_data.email, regist_data.barrio);
+		console.log("\x1b[32m%s\x1b[0m",'-------> nuevo usuario registrado: ', regist_data.nombre, " ", regist_data.cc);
+	});
+
+	s.on('login', (log_data) => {
+		login(log_data.email, log_data.password);
+		console.log("client ", s.id, " loged as ", log_data.email);
+	});
+
+	s.on('new_post', (post) => {
+		addPost(post.descripcion, post.reto, post.titulo, post.src);
+		console.log("nuevo post creado");
+	});
+	
+	s.on('read', (c) => {
+		const consulta = readData(c.child, c.field, c.sortby, c.exact);
+		console.log("-->  new consult: ",consulta);
+		s.emit('result',consulta);
+	});
+
+	s.on('write', (c) => {
+		writeData(c.data, c.child);
+	});
+});
+>>>>>>> 10b3e4d584d3dd56c99ea1e91be83a1c73cb2e7a
