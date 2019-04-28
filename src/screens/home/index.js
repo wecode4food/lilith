@@ -12,7 +12,16 @@ import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
 import * as cons from "../../res/values/constants";
 import * as firebase from 'firebase';
+const styles = {
+  well: {
+    background: `#e8e9eb`,
+    boxShadow: `-2px 6px 23px 1px  rgba(0,0,0,0.75)`,
+  },
+  but:{
 
+    color: `#fff`,
+  }
+};
 var config = {
     apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
     authDomain: "adan-is-aive.firebaseapp.com",
@@ -101,7 +110,7 @@ class Home extends React.Component {
 
                 {listS.map((item, index) => {
                     return (
-                        <Card className={this.props.card} className="card" id={"post".concat((index+1).toString())}>
+                        <Card className={this.props.card} style={styles.well} className="card" id={"post".concat((index+1).toString())}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"

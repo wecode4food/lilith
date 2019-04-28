@@ -10,8 +10,16 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import * as cons from '../../res/values/constants';
-
-
+const styles = {
+  well: {
+    background: `#e8e9eb`,
+    boxShadow: `-2px 6px 23px 1px  rgba(0,0,0,0.75)`,
+  },
+  but:{
+    
+    color: `#fff`,
+  }
+};
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +52,7 @@ class Register extends React.Component {
 
         return (
             <div className="login_register_container">
-                <Card  id="register_card">
+                <Card  id="register_card" style={styles.well}>
                     <CardContent>
                         <form>
                             <h2>Register</h2>
@@ -118,7 +126,7 @@ class Register extends React.Component {
 
                         <Button variant="contained" color="primary" style={{padding: 10}} onClick={cons.register(false,this.state.cedu, this.state.name, this.state.correo, this.state.contra, this.state.barrio)} disabled={this.state.checker}>
 
-                            <Typography variant="button">
+                            <Typography variant="button" style={styles.but}>
                                 Register
                             </Typography>
                         </Button>

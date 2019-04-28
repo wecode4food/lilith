@@ -1,7 +1,4 @@
-@font-face {
-  font-family: "Roboto", sans-serif;
-  src: url('https://fonts.googleapis.com/css?family=Roboto');
-}
+
 :root{
   --primary:#03A9F4;
   --primary_dark:#7B1FA2;
@@ -17,7 +14,9 @@
   box-sizing: border-box;
 }
 body{
-  font-family: "Roboto";
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-size: 16px;
+  letter-spacing:1px;
 }
 nav{
   grid-area: nv;
@@ -25,14 +24,7 @@ nav{
   color: #fff;
 }
 .gradient{
-  background: rgba(8,140,176,1);
-  background: -moz-linear-gradient(-45deg, rgba(8,140,176,1) 0%, rgba(26,109,177,1) 46%, rgba(48,65,177,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(8,140,176,1)), color-stop(46%, rgba(26,109,177,1)), color-stop(100%, rgba(48,65,177,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(8,140,176,1) 0%, rgba(26,109,177,1) 46%, rgba(48,65,177,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(8,140,176,1) 0%, rgba(26,109,177,1) 46%, rgba(48,65,177,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(8,140,176,1) 0%, rgba(26,109,177,1) 46%, rgba(48,65,177,1) 100%);
-  background: linear-gradient(135deg, rgba(8,140,176,1) 0%, rgba(26,109,177,1) 46%, rgba(48,65,177,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#088cb0', endColorstr='#3041b1', GradientType=1 );
+  background: #9C27B0;
 }
 header{
   grid-area: hd;
@@ -44,6 +36,7 @@ main{
 .card {
     max-width: 345px;
     padding-bottom:10px;
+
 }
 
 #login_card, #register_card{
