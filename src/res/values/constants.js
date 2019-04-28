@@ -1,18 +1,60 @@
 import openSocket from 'socket.io-client';
+import * as firebasefront from 'firebase';
+import * as file from 'fs';
+import FileUploader from "react-firebase-file-uploader";
+
+var config = {
+    apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",
+    authDomain: "adan-is-aive.firebaseapp.com",
+    databaseURL: "https://adan-is-aive.firebaseio.com",
+    projectId: "adan-is-aive",
+    storageBucket: "adan-is-aive.appspot.com",
+    messagingSenderId: "738898624761"
+};
+
+if (!firebasefront.apps.length) {
+    firebasefront.initializeApp(config)
+
+}
 
 let lastResult = {};
 
 export function ServerTest() {
-    /*
-    console.log('adding data');
-    addPost('In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens', 'una persona', 'reto1', 'https://www.google.com.co/url?sa=i&source=images&cd=&ved=2ahUKEwi9h72-7PHhAhVjvlkKHXsRA-8QjRx6BAgBEAU&url=https%3A%2F%2Fcaracol.com.co%2Femisora%2F2018%2F08%2F14%2Fbarranquilla%2F1534270480_944570.html&psig=AOvVaw2rqo57ZPBVVdKfzA-iCWbz&ust=1556508589412871');    
-    addPost('In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens', 'una persona', 'reto2', 'https://www.google.com.co/url?sa=i&source=images&cd=&ved=2ahUKEwi9h72-7PHhAhVjvlkKHXsRA-8QjRx6BAgBEAU&url=https%3A%2F%2Fcaracol.com.co%2Femisora%2F2018%2F08%2F14%2Fbarranquilla%2F1534270480_944570.html&psig=AOvVaw2rqo57ZPBVVdKfzA-iCWbz&ust=1556508589412871');    
-    addPost('In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens', 'una persona', 'reto3', 'https://www.google.com.co/url?sa=i&source=images&cd=&ved=2ahUKEwi9h72-7PHhAhVjvlkKHXsRA-8QjRx6BAgBEAU&url=https%3A%2F%2Fcaracol.com.co%2Femisora%2F2018%2F08%2F14%2Fbarranquilla%2F1534270480_944570.html&psig=AOvVaw2rqo57ZPBVVdKfzA-iCWbz&ust=1556508589412871');    
-    addPost('In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens', 'una persona', 'reto4', 'https://www.google.com.co/url?sa=i&source=images&cd=&ved=2ahUKEwi9h72-7PHhAhVjvlkKHXsRA-8QjRx6BAgBEAU&url=https%3A%2F%2Fcaracol.com.co%2Femisora%2F2018%2F08%2F14%2Fbarranquilla%2F1534270480_944570.html&psig=AOvVaw2rqo57ZPBVVdKfzA-iCWbz&ust=1556508589412871');    
-    addPost('In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens', 'una persona', 'reto5', 'https://www.google.com.co/url?sa=i&source=images&cd=&ved=2ahUKEwi9h72-7PHhAhVjvlkKHXsRA-8QjRx6BAgBEAU&url=https%3A%2F%2Fcaracol.com.co%2Femisora%2F2018%2F08%2F14%2Fbarranquilla%2F1534270480_944570.html&psig=AOvVaw2rqo57ZPBVVdKfzA-iCWbz&ust=1556508589412871');    
-    console.log('data added');
-    */
+    //DB_puppet();
+    UploadFile('https://www.elheraldo.co/sites/default/files/styles/width_860/public/articulo/2017/08/26/malecon.jpg?itok=rdPy_tQA');
 }
+
+export function DB_puppet(){
+    let puppet_desc = 'In nomine die nostri satanas luciferi excelsi Potemtum tuo mondi de Inferno, et non potest Lucifer Imperor Rex maximus, dud ponticius glorificamus et in modos copulum adoramus te Satan omnipotens in nostri mondi. Domini agimas Iesus nasareno rex ienoudorum In nostri terra Satan imperum in vita Lucifer ominus fortibus Obsenum corporis dei nostri satana prontem Reinus Glorius en in Terra eregius Luciferi Imperator omnipotens'; 
+    let puppet_imgsrc = 'https://firebasestorage.googleapis.com/v0/b/adan-is-aive.appspot.com/o/1534270480_944570_1534270647_noticia_normal.jpg?alt=media&token=1351d8bd-65d8-4e82-8588-b17f4aaf9168';
+    let puppet_owner = 'Jony Ventura';
+    let ret_title_array = ['reto1','reto2','reto3','reto4','reto5'];
+    let pos_title_array = ['post1','post2','post3','post4','post5'];
+    let start_date = '2/2/2';
+    let end_date = '9/9/9';
+
+    addReto(puppet_desc, ret_title_array[0], puppet_imgsrc);    
+    addReto(puppet_desc, ret_title_array[1], puppet_imgsrc);
+    addReto(puppet_desc, ret_title_array[2], puppet_imgsrc);
+    addReto(puppet_desc, ret_title_array[3], puppet_imgsrc);
+    addReto(puppet_desc, ret_title_array[4], puppet_imgsrc);
+
+    addPost(puppet_desc, puppet_owner, pos_title_array[0], puppet_imgsrc,start_date,end_date);    
+    addPost(puppet_desc, puppet_owner, pos_title_array[1], puppet_imgsrc,start_date,end_date);
+    addPost(puppet_desc, puppet_owner, pos_title_array[2], puppet_imgsrc,start_date,end_date);
+    addPost(puppet_desc, puppet_owner, pos_title_array[3], puppet_imgsrc,start_date,end_date);
+    addPost(puppet_desc, puppet_owner, pos_title_array[4], puppet_imgsrc,start_date,end_date);
+
+    addComment(puppet_desc, puppet_owner, pos_title_array[0]);    
+    addComment(puppet_desc, puppet_owner, pos_title_array[1]);
+    addComment(puppet_desc, puppet_owner, pos_title_array[2]);
+    addComment(puppet_desc, puppet_owner, pos_title_array[3]);
+    addComment(puppet_desc, puppet_owner, pos_title_array[4]);
+    
+
+}
+
+
 
 export function serverStart() {
     webSocket.on('connection', function (s) {
@@ -43,13 +85,12 @@ export function upToDb(up_child, up_data) {
         });
 }
 
-export function addReto(in_desc, in_persona, in_title, src, start_date, end_date) {
+export function addReto(in_desc, in_title, src, start_date, end_date) {
     webSocket.emit('write',
         {
             child: 'reto',
             data: {
                 descripcion: in_desc,
-                owner: in_persona,
                 titulo: in_title,
                 srchelp: src,
                 start: start_date,
@@ -58,14 +99,14 @@ export function addReto(in_desc, in_persona, in_title, src, start_date, end_date
         });
 }
 
-export function addComment(in_comment, in_persona, in_reto) {
+export function addComment(in_comment, in_persona, in_post) {
     webSocket.emit('write',
         {
             child: 'comentario',
             data: {
                 descripcion: in_comment,
                 owner: in_persona,
-                reto: in_reto
+                post: in_post
             }
         });
 }
@@ -84,6 +125,20 @@ export function addPost(desc, persona,in_reto, tit, src) {
         });
 }
 
+export function UploadFile(uri){
+    
+    var ref = firebasefront.storage().ref();
+
+    // Create a reference to 'mountains.jpg'
+    var mountainsRef = ref.child('mountains.jpg');
+
+    // Create a reference to 'images/mountains.jpg'
+    var mountainImagesRef = ref.child('images/mountains.jpg');
+    
+    ref.putString(uri).then(function(snapshot) {
+    console.log('Uploaded a raw string!');
+    });
+}
 
 export function login(email, pass) {
     webSocket.emit('login',
