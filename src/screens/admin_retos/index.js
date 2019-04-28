@@ -10,6 +10,11 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import * as cons from '../../res/values/constants';
+import Dropzone from "react-dropzone";
+import * as firebase from 'firebase';
+
+
+var storageRef = firebase.storage().ref();
 
 class Admretos extends React.Component {
     constructor(props) {
@@ -21,7 +26,67 @@ class Admretos extends React.Component {
           date_start:'',
           date_end: ''
 
+
         };
+    }
+
+    onImageDrop1(files) {
+        this.setState({
+            uploadedFile: files[0]
+        });
+
+        this.handleImageUpload1(files[0], this);
+    }
+
+    handleImageUpload1(file, thisl) {
+        var metadata = {
+            contentType: 'image/jpeg',
+        };
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(
+            firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function (snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                console.log('Upload is ' + progress + '% done');
+                thisl.setState({upload_progress: "Upload progress: "+progress+"%"});
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            function (error) {
+                // Errors list: https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            },
+            function () {
+                // Upload completed successfully, now we can get the download URL
+                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    console.log('File available at', downloadURL);
+                    this.setState({srcimg: downloadURL});
+                });
+            }
+        );
     }
 
     handleChange = name => event => {
@@ -84,7 +149,30 @@ class Admretos extends React.Component {
                             shrink: true,
                           }}
                           />
-
+                        <Dropzone
+                            onDrop={this.onImageDrop1.bind(this)}
+                            accept="image/*"
+                            multiple={false}>
+                            {({getRootProps, getInputProps}) => {
+                                return (
+                                    <div
+                                        {...getRootProps()}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {
+                                            <Card id="register_card">
+                                                <CardContent>
+                                                    <p>Arrastre y suelte una foto para subirla, también puede darle click para seleccionarla</p>
+                                                    <Typography>
+                                                        {this.state.upload_progress}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        }
+                                    </div>
+                                )
+                            }}
+                        </Dropzone>
                     </form>
                 </CardContent>
                 <CardActions className="card_button_container">

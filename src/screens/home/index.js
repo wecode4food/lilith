@@ -48,7 +48,7 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
-        firebase.database().ref('/post/').on("value", snapshot => {
+        firebase.database().ref('/reto/').on("value", snapshot => {
             results = snapshot.val(); //siempre es snapshot.val() para tomar el json de la ruta
             console.log(snapshot.val());
             console.log(results)//esto es para mostrar
@@ -72,7 +72,7 @@ class Home extends React.Component {
 
     assignList() {
             for (let i = 0; i < this.state.dataKeys.length; i++) {
-                firebase.database().ref('/post/' + this.state.dataKeys[i].toString() + '/').on("value", snapshot => {
+                firebase.database().ref('/reto/' + this.state.dataKeys[i].toString() + '/').on("value", snapshot => {
                     listS.push(snapshot.val());
                 });
             }
@@ -102,7 +102,7 @@ class Home extends React.Component {
                 {listS.map((item, index) => {
                     return (
                         <Card className={this.props.card} className="card" id={"post".concat((index+1).toString())}>
-                            <CardActionArea>
+
                                 <CardMedia
                                     component="img"
                                     alt="imagen x"
@@ -113,13 +113,13 @@ class Home extends React.Component {
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        {listS[index].reto}
+                                        {listS[index].titulo}
                                     </Typography>
                                     <Typography component="p">
                                         {listS[index].descripcion}
                                     </Typography>
                                 </CardContent>
-                            </CardActionArea>
+
                             <CardActions className="card_button_container">
                                 <Button component={Link} to={`/post/${this.state.dataKeys[index]}`} variant="contained" color="primary">
                                     Postular
