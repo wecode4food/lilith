@@ -1,7 +1,7 @@
 import openSocket from 'socket.io-client';
 import * as firebasefront from 'firebase';
-import * as file from 'fs';
-import FileUploader from "react-firebase-file-uploader";
+// import * as file from 'fs';
+// import FileUploader from "react-firebase-file-uploader";
 
 var config = {
     apiKey: "AIzaSyCoEZjpQrQNdzpPM_WN64-2ygQOp0rV02A",

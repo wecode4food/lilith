@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b73c320-a20a-4abe-b6ab-4e424053dd78" name="Default Changelist" comment="Implementacion de WebSocket" />
+    <list default="true" id="6b73c320-a20a-4abe-b6ab-4e424053dd78" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Admin_layout/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/admin_retos/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/estadisticas/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/values/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/values/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/testpage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/testpage/index.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,18 +24,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/vote/index.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,11 +54,45 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/post/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="1190">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/screens/testpage/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-600">
+              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/screens/admin_retos/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-69">
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Admin_layout/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,8 +121,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/res/values/constants.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1518">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="-483">
+              <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,14 +180,14 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/App.test.js" />
         <option value="$PROJECT_DIR$/src/Layout/index.js" />
-        <option value="$PROJECT_DIR$/src/res/values/constants.js" />
         <option value="$PROJECT_DIR$/src/screens/home/index.js" />
         <option value="$PROJECT_DIR$/src/screens/post/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/screens/register/index.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
-        <option value="$PROJECT_DIR$/src/screens/testpage/index.js" />
         <option value="$PROJECT_DIR$/src/screens/login/index.js" />
+        <option value="$PROJECT_DIR$/src/screens/testpage/index.js" />
+        <option value="$PROJECT_DIR$/src/res/values/constants.js" />
       </list>
     </option>
   </component>
@@ -187,7 +223,33 @@
               <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
               <item name="project_lilith" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Admin_layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project_lilith" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project_lilith" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project_lilith" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project_lilith" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="admin_retos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project_lilith" type="b2602c69:ProjectViewProjectNode" />
@@ -314,30 +376,36 @@
       <option name="project" value="LOCAL" />
       <updated>1556416317203</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implementacion de WebSocket">
+      <created>1556443018803</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556443018803</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49008000" />
+    <option name="totallyTimeSpent" value="51765000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49627978" weight="0.32998326" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49627978" visible="true" weight="0.32998326" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49702382" weight="0.32998326" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32998326" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32998326" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5029762" side_tool="true" weight="0.32998326" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32998326" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -398,18 +466,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/testpage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        <state relative-caret-position="46">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -422,13 +480,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/values/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
@@ -475,8 +526,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/post/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state relative-caret-position="1190">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/admin_retos/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Admin_layout/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/values/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/testpage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
