@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Roboto", sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Roboto');
+}
 :root{
   --primary:#03A9F4;
   --primary_dark:#7B1FA2;
@@ -9,10 +13,14 @@
   --divider:#BDBDBD;
 
 }
-
+*{
+  box-sizing: border-box;
+}
+body{
+  font-family: "Roboto";
+}
 nav{
   grid-area: nv;
-  /*background: var(--primary);*/
   align-self: center;
   color: #fff;
 }
@@ -37,8 +45,23 @@ main{
     max-width: 345px;
     padding-bottom:10px;
 }
+
+#login_card, #register_card{
+  grid-column:3;
+  grid-row:1;
+  align-self: center;
+}
+
+.login_register_container{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-auto-rows: min-content;
+}
+
 .card_button_container{
   justify-content: center;
+  margin-bottom: 1rem;
 }
 .title_postulados{
   grid-column: 3;
@@ -73,7 +96,62 @@ main{
   grid-auto-rows: min-content;
 
 }
+#cont_banner{
+  grid-column: 2/4;
+  grid-row: 2;
+  align-self: left;
 
+}
+.cont_txt{
+  grid-column: 2/3;
+  grid-row: 1;
+}
+.post_visualization{
+  margin-bottom: 80px;
+}
+.
+#post_v1{
+  grid-column: 2;
+  grid-row: 3;
+}
+#post_v2{
+  grid-column: 2;
+  grid-row: 4;
+}
+#post_v3{
+  grid-column: 2;
+  grid-row: 5;
+}
+#post_v4{
+  grid-column: 2;
+  grid-row: 6;
+}
+.select_filter{
+  grid-column: 2;
+  grid-area: flt;
+}
+
+.vote_container{
+  padding: 10px;
+  text-align: center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns:20% 60%  20%;
+  grid-auto-rows: min-content;
+
+}
+.vote_info{
+  text-align: left;
+  list-style-type: none;
+}
+.vote_info li{
+  display: inline-block;
+}
+select{
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
 footer{
   grid-area: ft;
   width: 100%;
@@ -88,12 +166,7 @@ footer{
   height: 2.5rem;*/
 }
 
-.s{
-  display: 'block';
-  padding: '20px';
-  height: '60px';
-  width: '100%';
-}
+
 .App {
   text-align: center;
   display: grid;
@@ -104,7 +177,6 @@ footer{
       "nv nv nv nv nv nv nv nv nv"
       "mn mn mn mn mn mn mn mn mn"
       "ft ft ft ft ft ft ft ft ft";
-
 
 }
 

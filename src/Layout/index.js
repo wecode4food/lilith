@@ -8,9 +8,29 @@ import Grow from "@material-ui/core/es/Grow/Grow";
 import Typography from "@material-ui/core/es/Typography/Typography";
 import MenuList from "@material-ui/core/es/MenuList/MenuList";
 import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
+import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import PropTypes from 'prop-types';
+import HomeIcon from '@material-ui/icons/Home';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
-//import 'typeface-roboto';
-
+import 'typeface-roboto';
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: red[800],
+    },
+  },
+});
 class Layout extends React.Component {
 
     render() {
@@ -19,7 +39,7 @@ class Layout extends React.Component {
         return (
             <Fragment>
                 <div className="App">
-                    <nav position="static" class = "gradient">
+                    <nav position="static" className = "gradient">
 
                         <Toolbar>
                             <Grid justify="space-between"
@@ -28,9 +48,7 @@ class Layout extends React.Component {
                                 <Grid item>
                                     <MenuList>
                                         <MenuItem  component={Link} to="/">
-                                            <Typography>
-                                                Titulo
-                                            </Typography>
+                                            <HomeIcon/>
                                         </MenuItem>
                                     </MenuList>
                                 </Grid>
@@ -50,7 +68,7 @@ class Layout extends React.Component {
                     </main>
                     <footer>
 
-                        <div class="s">
+                        <div className="s">
                           <p>Wecode4food 2019</p>
                         </div>
 
