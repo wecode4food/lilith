@@ -98,9 +98,10 @@ class Home extends React.Component {
             <div>
                 <main id="home_content">
                 <h1 className="title_postulados">Postulados</h1>
+
                 {listS.map((item, index) => {
                     return (
-                        <Card className={this.props.card} class="card" id={"post".concat((index+1).toString())}>
+                        <Card className={this.props.card} className="card" id={"post".concat((index+1).toString())}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -119,7 +120,7 @@ class Home extends React.Component {
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions class="card_button_container">
+                            <CardActions className="card_button_container">
                                 <Button component={Link} to={`/post/${this.state.dataKeys[index]}`} variant="contained" color="primary">
                                     Postular
                                 </Button>

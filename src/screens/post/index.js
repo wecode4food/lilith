@@ -51,6 +51,7 @@ class Post extends React.Component {
         });
         return (
 
+
             <div className="post">
                 <div class="post_description"><h3>{this.state.object_lov.titulo}</h3></div>
                 <p>{this.state.object_lov.descripcion}</p>
@@ -70,6 +71,7 @@ class Post extends React.Component {
 
                 {/*<Typography>{this.state.multiline}</Typography>*/}
             </div>
+
 
         );
 

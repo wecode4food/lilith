@@ -5,7 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField/TextField';
 import Typography from "@material-ui/core/es/Typography/Typography";
 import 'typeface-roboto';
+
 import * as cons from '../../res/values/constants';
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -51,7 +53,9 @@ class Login extends React.Component {
                     />
                     <br/>
                     <br/>
+
                     <Button variant="contained"   style={{padding: 10}} color="primary" onClick={cons.login(this.state.correo, this.state.contra)}>
+
                         <Typography variant="button">
                             Login
                         </Typography>

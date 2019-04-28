@@ -114,7 +114,9 @@ class Register extends React.Component {
                         </form>
                     </CardContent>
                     <CardActions className="card_button_container">
+
                         <Button variant="contained" color="primary" style={{padding: 10}} onClick={cons.register(false,this.state.cedu, this.state.name, this.state.correo, this.state.contra, this.state.barrio)} disabled={this.state.checker}>
+
                             <Typography variant="button">
                                 Register
                             </Typography>

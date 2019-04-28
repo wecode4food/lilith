@@ -131,6 +131,7 @@ main{
   grid-area: flt;
 }
 
+
 .vote_container{
   padding: 10px;
   text-align: center;
@@ -138,6 +139,7 @@ main{
   grid-gap: 10px;
   grid-template-columns:20% 60%  20%;
   grid-auto-rows: min-content;
+
 
 }
 .vote_info{
