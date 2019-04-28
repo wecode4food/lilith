@@ -7,7 +7,7 @@ import Login from './screens/login';
 import Register from './screens/register';
 import Home from './screens/home';
 import Post from './screens/post';
-
+import AdminLayout from './Admin_layout';
 import TestPage from './screens/testpage';
 import Vote from './screens/vote'
 
@@ -32,7 +32,7 @@ class App extends React.Component{
                   {/*<Route path="/post" render={props => <Post {...props}/>}/>*/}
                   <Route path="/vote" render={props => <Vote {...props}/>}/>
                   <Route path="/testpage" render={props => <TestPage {...props}/>}/>
-
+                  <Route path="/AdminLayout" render={props => <AdminLayout {...props}/>}/>
                   <Route path="/post/:id" component={Post}/>
 
               </Switch>
